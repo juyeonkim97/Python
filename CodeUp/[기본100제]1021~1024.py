@@ -10,7 +10,7 @@ print("%s"%str)
 d,f=map(int,input().split('.'))
 print("%d\n%d"%(d,f))
 
-#1024
+#1024 문자열 입력 받아 한 글자씩 출력
 strlist=list(input())
 i=0
 while(i<len(strlist)):
