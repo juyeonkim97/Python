@@ -1,3 +1,6 @@
+#그리디 알고리즘
+#백준 11399번
+
 n=int(input())
 p=list(map(int,input().split()))
 p.sort()
