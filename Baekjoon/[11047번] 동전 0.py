@@ -1,3 +1,6 @@
+#그리디 알고리즘
+#백준 11047번
+
 n,k=map(int,input().split())
 a=[0]*n
 for i in range(n):
