@@ -7,14 +7,11 @@ for i in range(n):
     a[i]=int(input())
 cnt=0
 a.reverse()
-print(a)
 for i in range(len(a)):
     if(a[i]<=k):
-        while(k>a[i]):
-            k=k-a[i]
-            print(k)
-            cnt+=1
-            
+        tmp=int(k/a[i])
+        k=k%a[i]
+        cnt+=tmp
     else:
         continue
 print(cnt)
