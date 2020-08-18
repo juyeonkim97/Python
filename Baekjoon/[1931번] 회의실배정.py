@@ -1,15 +1,20 @@
 #그리디 알고리즘
 #백준 1931번
 
-n=int(input())
-s=[0]*n #시작 시간 리스트
-e=[0]*n #끝나는 시간 리스트
+import sys
+n=int(sys.stdin.readline())
+a=list()
+cnt=0
 for i in range(n):
-    s[i],e[i]=list(map(int,input().split()))
+    s,e=map(int,sys.stdin.readline().split())
+    a.append((s,e))
 
-for i in range(n):
-    for j in range(n):
-        if((a[i]+1) == s[j]):
-            i= j
-            cnt+=1
-            
+a=sorted(a, key=lambda a:a[0])
+a=sorted(a, key=lambda a:a[1])
+
+s_time=0
+for time in a:
+    if time[0]>=s_time:
+        s_time=time[1]
+        cnt+=1
+print(cnt)
