@@ -2,19 +2,31 @@
 #백준 1946번
 
 import sys
-t=int(sys.stdin.readline())
-for i in range(t):
+def interview():
     n=int(sys.stdin.readline())
-    cnt=n
     alist=list()
     for j in range(n):
         a,b=map(int,sys.stdin.readline().split())
         alist.append((a,b))
-    alist=sorted(alist,key=lambda alist:alist[0])     
-    for z in range(1,len(alist)):#1위는 어쨌든 하나라도 이겼으니까 볼 필요 없음
-        for j in range(z):#z가 1일때, 순위는 2위 비교대상은 인덱스 0인 1위
-            if alist[z][1]>alist[j][1]:
+    alist=sorted(alist,key=lambda alist:alist[0])
+    z=1
+    j=0
+    passcon=1
+    cnt=n
+    while(z!=n):
+        if alist[z][1]>alist[j][1]:
+                passcon=0
                 cnt-=1
-                break
+        if j!=z and passcon!=0:
+            j+=1
+        else:
+            z+=1
+            j=0
+            passcon=1
+    return cnt
+
+t=int(sys.stdin.readline())
+for i in range(t):
+    cnt=interview()
     print(cnt)
         
