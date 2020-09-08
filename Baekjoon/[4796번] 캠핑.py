@@ -2,7 +2,10 @@
 #백준 4796번
 
 def camping(L,P,V):
-    res=int(V/P)*L+(V%P)
+    if(V%P <= L):  
+        res=V//P*L+V%P #// 하면 몫만 나옴
+    else:
+        res=V//P*L+L
     return res
 
 L,P,V=map(int,input().split())
