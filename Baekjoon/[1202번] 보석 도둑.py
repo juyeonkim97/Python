@@ -1,28 +1,27 @@
 #그리디 알고리즘
 #백준 1202번
 
-import sys
-n,k=map(int,sys.stdin.readline().split())#보석갯수, 가방 갯수
-a=list()
-for i in range(n):
-    m,v=map(int,sys.stdin.readline().split())
-    a.append((m,v))#무게, 가격
-##a=sorted(a, key=lambda a:a[0],reverse=True)
-a.sort()
-c=list()#최대 무게
-for i in range(k):
-    info=int(input())
-    c.append(info)
-c.sort()
-res=0
-j=0
-for j in c:
-    maxnum=0
-    for i in range(len(a)):
-        if(a[i][0]<=j):
-            if(maxnum<=a[i][1]):
-                maxnum=a[i][1]
-        else:
-            res+=maxnum
-print(res)
-
+import queue
+from sys import stdin, stdout
+N, K = stdin.readline().split()
+N = int(N)
+K = int(K)
+A = []
+for i in range(N):
+	x, y = stdin.readline().split()
+	x = int(x)
+	y = int(y)
+	A.append([x, y])
+for i in range(K):
+	A.append([int(stdin.readline()), 2000000])
+A.sort()
+ans = 0
+pq = queue.PriorityQueue(N)
+for x in A:
+	if x[1] != 2000000:
+		pq.put(-x[1])
+	else:
+		if (not(pq.empty())):
+			t = -pq.get()
+			ans += t
+print (ans)
