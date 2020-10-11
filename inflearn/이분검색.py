@@ -8,8 +8,8 @@ while(lt<=rt):
     if(a[mid]==num):
         break
     elif(a[mid]<num):
-        lt+=1
+        lt=mid+1
     elif(a[mid]>num):
-        rt-=1
+        rt=mid-1
     
 print(mid+1)
