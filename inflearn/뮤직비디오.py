@@ -10,7 +10,7 @@ def Count(capacity):
     return cnt
 n,m=map(int,input().split())
 a=list(map(int,input().split()))
-lt=1
+lt=max(a) #가장 긴 노래보다는 커야하니까
 rt=sum(a)
 cnt=1
 tmp=0
