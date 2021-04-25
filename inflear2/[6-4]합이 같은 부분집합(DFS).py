@@ -16,3 +16,13 @@ a=list(map(int,input().split()))
 total=sum(a)
 DFS(0,0)
 print("NO")
+if(a%2!=0):
+                            for m in range(2,n+1):
+                                cnt=0
+                                if(a%m==0):
+                                    cnt+=1
+                                if(cnt>1):
+                                    break
+                            if(cnt==1):
+                                answer+=1
+                                print(i,j,n,a)
