@@ -1,27 +1,19 @@
-##def DFS(L):
-##    global cnt
-##    if(res==0):
-##        return
-##    else:
-##        for i in a:
-##            cnt+=res//i
+ef DFS(L,sum):
+    global min
+    if(sum>m or L>min):
+        return
+    if(sum==m):
+        if(min>L):
+            min=L
+    else:
+        for i in a[::-1]:
+            DFS(L+1,sum+i)
+            
     
 n=int(input())
 a=list(map(int,input().split()))
 m=int(input())
 
-a.sort(reverse=True)
-res=m
-cnt=0
-for i in a:
-    cnt+=res//i
-    res=res%i
-    if(res==0):
-        break
-
-
-print(cnt)
-        
-        
-    
-    
+min=2147000000
+DFS(0,0)
+print(min)
