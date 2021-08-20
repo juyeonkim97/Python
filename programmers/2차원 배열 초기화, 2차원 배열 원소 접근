@@ -1,0 +1,48 @@
+def solution(rows, columns, queries):
+    answer = []
+    arrNum=[]
+    shift={
+        '상':[-1,0],
+        '하':[1,0],
+        '좌':[0,-1],
+        '우':[0,1]
+    }
+    #숫자 채우기, 2차원 배열 초기화
+    num=0
+    for i in range(rows):
+        arrNum.append([])
+        for j in range(columns):
+            num+=1
+            arrNum[i].append(num)
+            
+    #영역 지정하기
+    for i in queries:
+        x1,y1,x2,y2=i
+        tmp=[]
+        curShift=shift['우']
+        cur=[x1-1,y1-1] #여기서 시작
+        tmp.append(arrNum[cur[0]][cur[1]]) #다음 값 들어오면
+        minNum=2147000000
+        #값을 tmp에 넣고 다음 값 들어오면 tmp[0] 그 자리에 넣기
+        while(True):
+            cur=[x+y for x,y in zip(cur,curShift)] #위치 이동
+            tmp.append(arrNum[cur[0]][cur[1]]) #다음 값 들어오면
+            arrNum[cur[0]][cur[1]]=tmp[-2] #tmp[0] 그 자리에 넣기
+             #x,y좌표가 x1-1,y2-1과 같으면 좌로 이동으로 변경
+            if(cur[0]==x1-1 and cur[1]==y2-1):
+                #print(cur,'하로 바꿔')
+                curShift=shift['하']
+            #x,y좌표가 x2-1,y2-1과 같으면 좌로 이동으로 변경
+            elif(cur[0]==x2-1 and cur[1]==y2-1):
+                #print(cur,'좌로 바꿔')
+                curShift=shift['좌']
+            #x,y좌표가 x2-1,y1-1과 같으면 상으로 이동으로 변경
+            elif(cur[0]==x2-1 and cur[1]==y1-1):
+                #print(cur,'상으로 바꿔')
+                curShift=shift['상']
+            #x1,y1이면 종료
+            elif(cur[0]==x1-1 and cur[1]==y1-1):
+                arrNum[cur[0]][cur[1]]=tmp[-2]
+                break
+        answer.append(min(tmp))
+    return answer
