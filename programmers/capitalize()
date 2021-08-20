@@ -1,0 +1,12 @@
+# 프로그래머스 JadenCase 문자열 만들기
+
+def solution(s):
+    answer = ''
+    s=s.split(' ')
+    print(s)
+    for idx,string in enumerate(s):
+        #첫글자 대문자, 나머지 소문자로 만들기
+        s[idx]=string.capitalize()
+
+    answer=' '.join(s)
+    return answer
