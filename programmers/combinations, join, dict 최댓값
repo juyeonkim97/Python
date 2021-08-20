@@ -1,0 +1,21 @@
+# 프로그래머스 메뉴 리뉴얼
+
+from itertools import combinations as cb
+def solution(orders, course):
+    answer = []
+    for n in course:
+        combi={}
+        for i in orders:
+            #문자열 오름차순으로 변경한 다음에 조합 구하기
+            for j in cb(sorted(i),n):
+                if j in combi:
+                    combi[j]+=1
+                else:
+                    combi[j]=1
+        #dict value 최댓값의 key 값 구하기
+        #2번 이상 시킨 구성만
+        if(max(combi.values(),default=0)>=2):
+            key=[k for k,v in combi.items() if max(combi.values()) == v]
+            for i in key:
+                answer.append(''.join(i))        
+    return sorted(answer)
