@@ -1,0 +1,17 @@
+# 프로그래머스 조이스틱
+
+def solution(name):
+    answer = 0
+    min_move = 2147000000
+    for idx,ch in enumerate(name):
+        #상, 하 방향
+        answer+=(min(ord(ch)-65,90-ord(ch)+1))
+        next = idx + 1
+        #연속된 A 구하기
+        while next < len(name) and name[next] == 'A':
+            next += 1
+        #좌,우 방향
+        min_move = min(min_move, idx + idx + len(name) - next)
+    
+    answer+=min_move
+    return answer
