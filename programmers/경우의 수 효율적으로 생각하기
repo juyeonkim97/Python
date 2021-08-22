@@ -1,0 +1,23 @@
+# 프로그래머스 위장
+
+def solution(clothes):
+    answer = 1
+    dictClo={}
+    
+    for clo in clothes:
+        category=clo[1]
+        name=clo[0]
+        if(category in dictClo):
+            dictClo[category]+=1
+        else:
+            dictClo[category]=1
+    
+    if(len(dictClo.keys())==1):
+        key=list(dictClo.keys())[0]
+        answer=dictClo[key]
+    else:    
+        for key in dictClo.keys():
+            answer*=(dictClo[key]+1) #+1은 안 입은 경우를 추가한 것
+        answer-=1 #모두 다 안 입은 경우 하나는 빼줌
+    
+    return answer
