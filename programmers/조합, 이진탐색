@@ -1,0 +1,55 @@
+# 프로그래머스 순위 검색
+
+from itertools import combinations as cb
+def solution(info, query):
+    answer = []
+    dictTmp={}
+    
+    # info로 조합 16개 만들기
+    for i in info:
+        i=i.split(' ')
+        key=i[:-1]
+        value=int(i[-1])
+        for j in range(5):
+            for c in cb(key,j):
+                key2=''.join(c)
+                if(key2 in dictTmp): #dict에 key 있는지 확인
+                    dictTmp[key2].append(value)
+                else:
+                    dictTmp[key2]=[value]
+                    
+    #dictTmp value sort
+    for key in dictTmp.keys():
+        dictTmp[key].sort()
+    
+    
+    # qeury split
+    for idx,one in enumerate(query):
+        one=one.split(' ')
+        key=one[:-1]
+        value=int(one[-1])
+        
+        #'and' 삭제
+        while 'and' in key:
+            key.remove('and')
+        #'-' 삭제    
+        while '-' in key:
+            key.remove('-')
+        key=''.join(key)
+        
+        #dict에 key 있는지 확인
+        if(key in dictTmp):
+            scores=dictTmp[key]
+            if(len(scores)>0):
+                lt=0
+                rt=len(scores)
+                while(lt<rt): #이진탐색
+                    mid=(lt+rt)//2
+                    if(scores[mid]>=value):
+                        rt=mid
+                    else:
+                        lt=mid+1
+                answer.append(len(scores)-lt)
+        else:
+            answer.append(0)
+    return answer
